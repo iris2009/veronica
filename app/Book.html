@@ -1,0 +1,84 @@
+﻿<html>
+<form method="get">
+{% csrf_token %}
+<table border=2 align="center">
+ <tr>  
+  <th>ISBN</th><th>Title</th><th>AuthorID</th><th>Publisher</th><th>PublishDate</th><th>Price</th>
+ </tr> 
+ <tr>
+  <td><input name="ISBN" type="text"></td>
+  <td><input name="Title" type="text"></td>
+  <td><input name="AuthorID" type="text"></td>
+  <td><input name="Publisher" type="text"></td>    
+  <td><input name="PublishDate" type="text"></td>
+  <td><input name="Price" type="text"></td>
+</tr>
+
+<tr>
+<th>AuthorName</th><th>AuthorAge</th><th>AuthorCountry</th>
+</tr>
+  <td><input name="AuthorName" type="text"></td>
+  <td><input name="AuthorAge" type="text"></td>
+  <td><input name="AuthorCountry" type="text"></td>
+  <td><input type="submit" name ="insertorupdate" value = "insert or update"> <input type="reset" value="重填"></td>  
+  <td><input type = "submit" name = "delete" value = "delete"></td> 
+    </tr>
+
+
+<ul>
+ {% for each in ALLset %} 
+<tr>
+  <td>{{ each.ISBN }}</td>
+  <td><a href="/xxx/?aTitle={{each.Title}}">{{ each.Title }}</a><input type = "submit" name = {{ each.Title }} value = "显示书籍信息" ></td>
+  <td>{{ each.AuthorID }}</td>
+  <td>{{ each.Publisher }}</td>
+  <td>{{ each.PublishDate }}</td>
+  <td>{{ each.Price }}</td>
+  <td><input type = "submit" name = {{ each.ISBN }} value = "delete"></td> 
+</tr>
+{% endfor %}
+</ul>
+
+<tr>
+<th>input an author:</th>
+ <td><input name = "authorselect" type = "text"></td>
+ <td><input type = "submit" name = "toselect" value = "select"></td>
+</tr>
+
+<ul>
+{% for each in ONE %}
+<tr>
+  <p>ISBN:{{ each.ISBN }}</p>
+  <p>Title:{{ each.Title }}</p>	
+  <p>AuthorID:{{ each.AuthorID }}</p>
+  <p>Publisher:{{ each.Publisher }}</p>
+  <p>PublishDate:{{ each.PublishDate }}</p>
+  <p>Price:{{ each.Price }}</p>
+
+{% endfor %}
+</ul>
+
+<ul>
+{% for i in AUTHOR %}
+<tr>
+ <p>AuthorName:{{i.Name}}</p>
+ <p>AuthorID:{{i.AuthorID}}</p>
+ <p>AuthorAge:{{i.Age}}</p>
+ <p>AuthorCountry:{{i.Country}}</p>
+{% endfor %}
+</ul>
+
+<ul>
+<tr>Books by this author:</tr>
+{%for i in Bookset%}
+<tr>
+<p>{{i.Title}}</p>
+</tr>
+{% endfor %}
+</ul>
+
+
+   </table>
+ </form>
+
+</html>

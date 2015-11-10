@@ -1,0 +1,30 @@
+﻿<html>
+{% csrf_token %}
+<body>
+
+<ul>
+<p>{{id}}</p>
+{% for each in ONE %}
+<tr>
+  <p>ISBN:{{ each.ISBN }}</p>
+  <p>Title:{{ each.Title }}</p>	
+  <p>AuthorID:{{ each.AuthorID }}</p>
+  <p>Publisher:{{ each.Publisher }}</p>
+  <p>PublishDate:{{ each.PublishDate }}</p>
+  <p>Price:{{ each.Price }}</p>
+{%empty%}
+  <p>no exit</p>
+{% endfor %}
+</ul>
+
+<ul>
+{% for i in AUTHOR %}
+<tr>
+ <p>AuthorName:{{i.Name}}</p>
+ <p>AuthorID:{{i.AuthorID}}</p>
+ <p>AuthorAge:{{i.Age}}</p>
+ <p>AuthorCountry:{{i.Country}}</p>
+{% endfor %}
+</ul>
+</body>
+</html>
